@@ -26,8 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://pkgs.dev.azure.com/mrvengenharia/_packaging/mrv-foundation/nuget/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net5.0": {
@@ -47,15 +46,15 @@
           "dependencies": {
             "GraphQL.Server.Ui.Voyager": {
               "target": "Package",
-              "version": "[5.0.2, )"
+              "version": "[4.4.1, )"
             },
             "HotChocolate.AspNetCore": {
               "target": "Package",
-              "version": "[11.2.1, )"
+              "version": "[11.2.2, )"
             },
             "HotChocolate.Data.Entityframework": {
               "target": "Package",
-              "version": "[11.2.1, )"
+              "version": "[11.2.2, )"
             },
             "Microsoft.EntityframeworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
