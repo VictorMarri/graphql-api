@@ -11,10 +11,18 @@ namespace CommanderGQL.GraphQL
 {
     public class Query
     {
-        [UseDbContext(typeof(AppDbContext))] //Aqui estou falando que esse metodo a gente vai pegar ele da pool que a gente construiu na instancia do DbContext no startup e devolver tudo quando tiver finalizado
+        [UseDbContext(typeof(AppDbContext))] //Implementando um context Multi-Thread, que vai suportar varias consultas ao mesmo tempo
+        [UseProjection] //Para mostrarmos objetos filhos
         public IQueryable<Platform> GetPlatform([ScopedService] AppDbContext context) //ScopedService tem a ver com o tempo de vida do contexto que vamos estar usando. Enquanto a gente usar o mesmo contexto esse metodo vai funcionar nas consultas, independentemente se for simultaneamente.
         {
             return context.Platforms;
+        }
+
+        [UseDbContext(typeof(AppDbContext))] //Multi Thread
+        [UseProjection]
+        public IQueryable<Command> GetCommand([ScopedService] AppDbContext context) 
+        {
+            return context.Commands;
         }
     }
 }
