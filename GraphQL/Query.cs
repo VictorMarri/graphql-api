@@ -12,14 +12,16 @@ namespace CommanderGQL.GraphQL
     public class Query
     {
         [UseDbContext(typeof(AppDbContext))] //Implementando um context Multi-Thread, que vai suportar varias consultas ao mesmo tempo
-        [UseProjection] //Para mostrarmos objetos filhos
+        [UseFiltering]
+        [UseSorting]
         public IQueryable<Platform> GetPlatform([ScopedService] AppDbContext context) //ScopedService tem a ver com o tempo de vida do contexto que vamos estar usando. Enquanto a gente usar o mesmo contexto esse metodo vai funcionar nas consultas, independentemente se for simultaneamente.
         {
             return context.Platforms;
         }
 
         [UseDbContext(typeof(AppDbContext))] //Multi Thread
-        [UseProjection]
+        [UseFiltering]
+        [UseSorting]
         public IQueryable<Command> GetCommand([ScopedService] AppDbContext context) 
         {
             return context.Commands;
