@@ -1,6 +1,7 @@
 using CommanderGQL.Data;
 using CommanderGQL.GraphQL;
 using CommanderGQL.GraphQL.Platforms;
+using CommanderGQL.GraphQL.Types;
 using CommanderGQL.GraphQL.Types.Commands;
 using GraphQL.Server.Ui.Voyager;
 using Microsoft.AspNetCore.Builder;
@@ -36,10 +37,12 @@ namespace CommanderGQL
                 .AddGraphQLServer()
                 .AddQueryType<Query>()
                 .AddMutationType<Mutation>()
+                .AddSubscriptionType<Subscription>()
                 .AddType<PlatformType>()
                 .AddType<CommandType>()
                 .AddFiltering()
-                .AddSorting();
+                .AddSorting()
+                .AddInMemorySubscriptions();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,6 +52,8 @@ namespace CommanderGQL
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseWebSockets();
 
             app.UseRouting();
 
